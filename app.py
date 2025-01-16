@@ -42,7 +42,7 @@ def fake_database_api(query: str) -> str:
     myrow = None
 
     for row in cur.fetchall():
-        myrow = row['comments']
+        myrow = row['comments']+" "+row['username']
         print(myrow)
     return myrow
 
@@ -81,7 +81,6 @@ graph.add_conditional_edges("llm_agent",
 graph.add_edge("tool", "llm_agent")
 
 runner = graph.compile()
-print(runner)
 
 def get_response(query: str):
     response = runner.invoke({"messages": [query]})
@@ -98,7 +97,7 @@ mbti = st.text_input("MBTIのシンボルを教えてください:")
 
 # Button to get response
 if st.button("生成"):
-    response = get_response(f"{mbti}の性格とusernameを必ず、日本語で教えてください")
+    response = get_response(f"{mbti}の性格と該当するusernameを必ず、日本語で教えてください")
     st.write(response)
 
 #mbti = input("MBTIのシンボルを教えてください: ")
