@@ -36,11 +36,8 @@ def fake_database_api(query: str) -> str:
                              cursorclass=pymysql.cursors.DictCursor)
     cur = connection.cursor()
 
-    #mbti = input("MBTIのシンボルを教えてください: ")
-
     cur.execute("select comments from mbti_comments where symbol = '"+mbti+"'")
-    #cur.execute("select comments from mbti_comments where symbol = 'INTJ'")
-
+    
     myrow = None
 
     for row in cur.fetchall():
@@ -99,7 +96,7 @@ st.title("MBTI Personality Checker")
 mbti = st.text_input("MBTIのシンボルを教えてください:")
 
 # Button to get response
-if st.button("Get Response"):
+if st.button("生成"):
     response = get_response(f"{mbti}の性格を日本語で教えてください")
     st.write(response)
 
