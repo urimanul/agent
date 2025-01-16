@@ -36,7 +36,8 @@ def fake_database_api(query: str) -> str:
                              cursorclass=pymysql.cursors.DictCursor)
     cur = connection.cursor()
 
-    cur.execute("select comments from mbti_comments where symbol = '"+mbti+"'")
+    #cur.execute("select comments from mbti_comments where symbol = '"+mbti+"'")
+    cur.execute("select a.comments,b.username from mbti_comments as a, mbti_test_results as b where a.symbol = '"+mbti+"' and b.symbol = '"+mbti+"'")
     
     myrow = None
 
