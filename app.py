@@ -42,7 +42,7 @@ def fake_database_api(query: str) -> str:
     myrow = None
 
     for row in cur.fetchall():
-        myrow = row['comments']+" "+row['username']
+        myrow = "性格: "+row['comments']+" 該当者: "+row['username']
         print(myrow)
     return myrow
 
