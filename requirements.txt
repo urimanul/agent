@@ -2,3 +2,4 @@ langgraph
 httpx  
 langchain_groq
 pymysql
+os
