@@ -87,7 +87,7 @@ print(runner)
 
 def get_response(query: str):
     response = runner.invoke({"messages": [query]})
-    # print(response)
+    st.write(response)
     return response["messages"][-1].content
 
 mbti = ""
