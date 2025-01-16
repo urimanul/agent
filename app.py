@@ -83,7 +83,6 @@ graph.add_edge("tool", "llm_agent")
 runner = graph.compile()
 
 def get_response(query: str):
-    st.write(query)
     response = runner.invoke({"messages": [query]})
     #st.write(response)
     return response["messages"][-1].content
