@@ -14,8 +14,8 @@ from langgraph.graph import StateGraph
 from langgraph.graph.message import add_messages
 from langchain_groq import ChatGroq
 
-if not os.environ.get("GROQ_API_KEY"):
-    os.environ["GROQ_API_KEY"] = getpass.getpass("GROQ API Key:")
+#if not os.environ.get("GROQ_API_KEY"):
+    #os.environ["GROQ_API_KEY"] = getpass.getpass("GROQ API Key:")
 
 llm = ChatGroq(groq_api_key=os.environ["GROQ_API_KEY"], model_name="llama3-70b-8192")
 
