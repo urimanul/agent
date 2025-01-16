@@ -46,7 +46,7 @@ def fake_database_api(query: str) -> str:
         #st.write(myrow)
     return myrow
 
-llm = ChatGroq(groq_api_key=os.environ.get("GROQ_API_KEY"), model_name="llama3-70b-8192")
+llm = ChatGroq(groq_api_key=os.environ.get("GROQ_API_KEY"), model_name="llama3-70b-8192", streaming=False)
 llm_with_tools = llm.bind_tools([fake_database_api])
 
 def llm_agent(state):
