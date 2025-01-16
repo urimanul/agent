@@ -21,6 +21,30 @@ from langchain_groq import ChatGroq
 class State(TypedDict):
     messages: Annotated[list, add_messages]
 
+@tool
+def fake_database_api(query: str) -> str:
+    """情報を格納したデータベースを検索するAPI"""
+    connection = pymysql.connect(host='www.ryhintl.com',
+                             user='smairuser',
+                             password='smairuser',
+                             db='smair',
+                             charset='utf8mb4',
+                             port=36000,
+                             cursorclass=pymysql.cursors.DictCursor)
+    cur = connection.cursor()
+
+    #mbti = input("MBTIのシンボルを教えてください: ")
+
+    cur.execute("select comments from mbti_comments where symbol = '"+mbti+"'")
+    #cur.execute("select comments from mbti_comments where symbol = 'INTJ'")
+
+    myrow = None
+
+    for row in cur.fetchall():
+        myrow = row['comments']
+        print(myrow)
+    return myrow
+
 llm = ChatGroq(groq_api_key="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", model_name="llama3-70b-8192")
 llm_with_tools = llm.bind_tools([fake_database_api])
 
@@ -63,30 +87,6 @@ def get_response(query: str):
     return response["messages"][-1].content
 
 mbti = ""
-
-@tool
-def fake_database_api(query: str) -> str:
-    """情報を格納したデータベースを検索するAPI"""
-    connection = pymysql.connect(host='www.ryhintl.com',
-                             user='smairuser',
-                             password='smairuser',
-                             db='smair',
-                             charset='utf8mb4',
-                             port=36000,
-                             cursorclass=pymysql.cursors.DictCursor)
-    cur = connection.cursor()
-
-    #mbti = input("MBTIのシンボルを教えてください: ")
-
-    cur.execute("select comments from mbti_comments where symbol = '"+mbti+"'")
-    #cur.execute("select comments from mbti_comments where symbol = 'INTJ'")
-
-    myrow = None
-
-    for row in cur.fetchall():
-        myrow = row['comments']
-        print(myrow)
-    return myrow
 
 mbti = input("MBTIのシンボルを教えてください: ")
 get_response("INFJの性格を日本語で教えてください")
