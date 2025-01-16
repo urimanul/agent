@@ -3,4 +3,3 @@ langchain
 httpx  
 langchain_groq
 pymysql
-os
