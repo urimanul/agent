@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 import streamlit as st
 import pymysql.cursors
 from typing import TypedDict, Annotated
