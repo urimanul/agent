@@ -3,3 +3,4 @@ langchain
 httpx  
 langchain_groq
 pymysql
+python-dotenv
