@@ -5,6 +5,13 @@ from langchain_core.tools import tool
 from langchain_core.messages import ToolMessage
 from langgraph.graph import END, StateGraph
 
+class State(TypedDict):
+    messages: Annotated[list, 'add_messages']
+
+# Initialize state
+if 'state' not in st.session_state:
+    st.session_state.state = State(messages=[])
+
 # データベース接続関数
 @tool
 def fake_database_api(query: str, symbol: str) -> str:
@@ -25,9 +32,6 @@ def fake_database_api(query: str, symbol: str) -> str:
         myrow = row['comments']
         print(myrow)
     return myrow
-
-class State(TypedDict):
-    messages: Annotated[list, add_messages]
 
 # llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
 llm = ChatGroq(groq_api_key=os.environ["GROQ_API_KEY"], model_name="llama3-70b-8192")
