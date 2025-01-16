@@ -17,6 +17,8 @@ from langchain_groq import ChatGroq
 
 load_dotenv()
 
+myrow = None
+
 if not os.environ.get("GROQ_API_KEY"):
     os.environ["GROQ_API_KEY"] = getpass.getpass("GROQ API Key:")
 
@@ -38,8 +40,6 @@ def fake_database_api(query: str) -> str:
 
     #cur.execute("select comments from mbti_comments where symbol = '"+mbti+"'")
     cur.execute("select a.comments,b.username from mbti_comments as a, mbti_test_results as b where a.symbol = '"+mbti+"' and b.symbol = '"+mbti+"'")
-    
-    myrow = None
 
     for row in cur.fetchall():
         myrow = "性格="+row['comments']+" 該当者="+row['username']
