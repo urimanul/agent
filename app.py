@@ -43,7 +43,7 @@ def fake_database_api(query: str) -> str:
 
     for row in cur.fetchall():
         myrow = "性格: "+row['comments']+" 該当者: "+row['username']
-        print(myrow)
+        #print(myrow)
     return myrow
 
 llm = ChatGroq(groq_api_key=os.environ.get("GROQ_API_KEY"), model_name="llama3-70b-8192")
