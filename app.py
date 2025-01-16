@@ -14,8 +14,9 @@ from langgraph.graph import StateGraph
 from langgraph.graph.message import add_messages
 from langchain_groq import ChatGroq
 
-#if not os.environ.get("GROQ_API_KEY"):
-    #os.environ["GROQ_API_KEY"] = getpass.getpass("GROQ API Key:")
+print(os.environ.get("GROQ_API_KEY"))
+if not os.environ.get("GROQ_API_KEY"):
+    os.environ["GROQ_API_KEY"] = getpass.getpass("GROQ API Key:")
 
 
 class State(TypedDict):
@@ -45,7 +46,7 @@ def fake_database_api(query: str) -> str:
         print(myrow)
     return myrow
 
-llm = ChatGroq(groq_api_key="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", model_name="llama3-70b-8192")
+llm = ChatGroq(groq_api_key=os.environ.get("GROQ_API_KEY"), model_name="llama3-70b-8192")
 llm_with_tools = llm.bind_tools([fake_database_api])
 
 def llm_agent(state):
