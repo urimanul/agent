@@ -17,7 +17,7 @@ from langchain_groq import ChatGroq
 #if not os.environ.get("GROQ_API_KEY"):
     #os.environ["GROQ_API_KEY"] = getpass.getpass("GROQ API Key:")
 
-llm = ChatGroq(groq_api_key=os.environ["GROQ_API_KEY"], model_name="llama3-70b-8192")
+llm = ChatGroq(groq_api_key="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", model_name="llama3-70b-8192")
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
