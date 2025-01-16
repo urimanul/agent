@@ -85,9 +85,8 @@ runner = graph.compile()
 def get_response(query: str):
     response = runner.invoke({"messages": [query]})
     st.write(response)
-    ＃return response["messages"][-1].content
     return response["messages"][2].content
-
+    
 mbti = ""
 
 # Streamlit UI
