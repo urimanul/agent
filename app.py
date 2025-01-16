@@ -91,5 +91,16 @@ def get_response(query: str):
 
 mbti = ""
 
-mbti = input("MBTIのシンボルを教えてください: ")
-get_response("INFJの性格を日本語で教えてください")
+# Streamlit UI
+st.title("MBTI Personality Checker")
+
+# Input for MBTI symbol
+mbti = st.text_input("MBTIのシンボルを教えてください:")
+
+# Button to get response
+if st.button("Get Response"):
+    response = get_response(f"{mbti}の性格を日本語で教えてください")
+    st.write(response)
+
+#mbti = input("MBTIのシンボルを教えてください: ")
+#get_response("INFJの性格を日本語で教えてください")
