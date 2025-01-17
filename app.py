@@ -62,7 +62,7 @@ def tool(state):
     return state
 
 def router(state):
-    print(state)
+    st.write(state)
     last_message = state["messages"][-1]
     if last_message.tool_calls:
         return "tool"
