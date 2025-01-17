@@ -42,7 +42,7 @@ def fake_database_api(query: str) -> str:
     #cur.execute("select a.comments,b.username from mbti_comments as a, mbti_test_results as b where a.symbol = '"+mbti+"' and b.symbol = '"+mbti+"'")
 
     for row in cur.fetchall():
-        myrow = "性格="+row['comments']+" 該当者="+row['username']
+        myrow = "性格="+row['comments']
         #st.write(myrow)
     return myrow
 
