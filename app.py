@@ -38,8 +38,8 @@ def fake_database_api(query: str) -> str:
                              cursorclass=pymysql.cursors.DictCursor)
     cur = connection.cursor()
 
-    #cur.execute("select comments from mbti_comments where symbol = '"+mbti+"'")
-    cur.execute("select a.comments,b.username from mbti_comments as a, mbti_test_results as b where a.symbol = '"+mbti+"' and b.symbol = '"+mbti+"'")
+    cur.execute("select comments from mbti_comments where symbol = '"+mbti+"'")
+    #cur.execute("select a.comments,b.username from mbti_comments as a, mbti_test_results as b where a.symbol = '"+mbti+"' and b.symbol = '"+mbti+"'")
 
     for row in cur.fetchall():
         myrow = "性格="+row['comments']+" 該当者="+row['username']
@@ -85,8 +85,8 @@ runner = graph.compile()
 def get_response(query: str):
     response = runner.invoke({"messages": [query]})
     #st.write(response)
-    return response["messages"][2].content
-    #return response["messages"][-1].content
+    #return response["messages"][2].content
+    return response["messages"][-1].content
     
 mbti = ""
 
