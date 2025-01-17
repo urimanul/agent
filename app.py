@@ -100,7 +100,7 @@ mbti = st.text_input("MBTIのシンボルを教えてください:")
 if st.button("生成"):
     response = get_response(f"{mbti}の性格と該当者を必ず、日本語で教えてください")
     #response = get_response(f"{mbti}の該当者を必ず、日本語で教えてください")
-    st.write(response.content)
+    st.write(response["messages"][-1].content)
 
 #mbti = input("MBTIのシンボルを教えてください: ")
 #get_response("INFJの性格を日本語で教えてください")
